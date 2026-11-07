@@ -1,0 +1,171 @@
+{
+  "info": {
+    "name": "Inventory Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:5000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/health"
+      }
+    },
+    {
+      "name": "List all",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/inventory"
+      }
+    },
+    {
+      "name": "Search",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/inventory?search=milk"
+      }
+    },
+    {
+      "name": "Low stock",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/inventory/low-stock?threshold=10"
+      }
+    },
+    {
+      "name": "Get one",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/inventory/1"
+      }
+    },
+    {
+      "name": "Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/inventory",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product_name\": \"Green Tea\",\n  \"brands\": \"Lipton\",\n  \"price\": 4.5,\n  \"stock\": 20\n}"
+        }
+      }
+    },
+    {
+      "name": "Update price/stock",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/inventory/1",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"price\": 4.25,\n  \"stock\": 10\n}"
+        }
+      }
+    },
+    {
+      "name": "Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "{{base_url}}/inventory/1"
+      }
+    },
+    {
+      "name": "External: barcode",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/external/barcode/3017620422003"
+      }
+    },
+    {
+      "name": "External: search",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/external/search?name=almond%20milk&limit=3"
+      }
+    },
+    {
+      "name": "Import by barcode",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/inventory/import",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"barcode\": \"3017620422003\",\n  \"price\": 5.99,\n  \"stock\": 12\n}"
+        }
+      }
+    },
+    {
+      "name": "Import by name",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/inventory/import",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"almond milk\",\n  \"price\": 3.5,\n  \"stock\": 10\n}"
+        }
+      }
+    },
+    {
+      "name": "Enrich item",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": "{{base_url}}/inventory/1/enrich"
+      }
+    },
+    {
+      "name": "Invalid: negative price (expect 400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/inventory",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product_name\": \"Bad\",\n  \"price\": -1\n}"
+        }
+      }
+    }
+  ]
+}
