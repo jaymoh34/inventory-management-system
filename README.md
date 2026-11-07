@@ -156,3 +156,4 @@ When pushing to GitHub, open each branch as a pull request, merge it, and delete
 ## Project structure
 
 See [docs/DESIGN.md](docs/DESIGN.md#code-layout).
+
